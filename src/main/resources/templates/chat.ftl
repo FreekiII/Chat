@@ -17,7 +17,7 @@
     </div>
     <h3>Message log</h3>
     <#list messages as msg>
-        <div>${msg.author}</div>
+        <div>${msg.author.getUsername()}</div>
         <div>${msg.text}</div>
     <#else>
         No messages in chat :(

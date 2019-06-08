@@ -1,8 +1,7 @@
 <#import "freemarkerTemplates/page.ftl" as p>
 
 <@p.page "Registration">
-    Fill up your credentials
-    ${error}
+    <#if error??>${error}<#else>Fill up your credentials</#if>
     <form action="/registration" method="post">
         <div><label> User Name: <input type="text" name="username"/> </label></div>
         <div><label> Password: <input type="password" name="password"/> </label></div>
