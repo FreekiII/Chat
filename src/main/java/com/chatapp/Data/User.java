@@ -27,6 +27,11 @@ public class User implements UserDetails {
 
     }
 
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
     public Long getId() {
         return id;
     }
@@ -92,5 +97,7 @@ public class User implements UserDetails {
         this.roles = roles;
     }
 
-
+    public boolean isAdmin() {
+        return roles.contains(Role.ADMIN);
+    }
 }

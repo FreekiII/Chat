@@ -1,13 +1,7 @@
 <#import "freemarkerTemplates/page.ftl" as p>
+<#import "freemarkerTemplates/loginForm.ftl" as l>
 
 <@p.page "Registration">
-    <#if error??>${error}<#else>Fill up your credentials</#if>
-    <form action="/registration" method="post">
-        <div><label> User Name: <input type="text" name="username"/> </label></div>
-        <div><label> Password: <input type="password" name="password"/> </label></div>
-        <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-        <div>
-            <button type="submit">Register</button>
-        </div>
-    </form>
+    <@l.login "/registration" "Register" "Fill up your credentials"/>
+    <a href="/login">Already have an account</a>
 </@p.page>
