@@ -19,7 +19,7 @@
                 <td>${user.id}</td>
                 <td>${user.username}</td>
                 <td>${user.password}</td>
-                <td>${user.isActive()}</td>
+                <td><#if user.isActive()>True<#else>False</#if></td>
                 <td>
                     <#list user.roles as role>
                         ${role}<#sep>;

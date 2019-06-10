@@ -2,7 +2,7 @@
     <div class="my-2">
         <#if error??>${error}<#else>${text}</#if>
     </div>
-    <form action="@{action}" method="post">
+    <form action="${action}" method="post">
         <div class="form-group">
             <label for="username">
                 User Name:
