@@ -2,28 +2,25 @@ package com.chatapp.Controller;
 
 import com.chatapp.Data.Role;
 import com.chatapp.Data.User;
-import com.chatapp.Repository.UserRepository;
+import com.chatapp.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
 import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/users")
 @PreAuthorize("hasAuthority('ADMIN')")
 public class UserController {
     @Autowired
-    private UserRepository userRepo;
+    private UserService usrService;
 
     @GetMapping
     public String usersList(Model model) {
-        model.addAttribute("usr_list", userRepo.findAll());
+        model.addAttribute("usr_list", usrService.findAll());
         return "users";
     }
 
@@ -37,18 +34,7 @@ public class UserController {
     @PostMapping("/{id}")
     public String confirmEdit(@PathVariable("id") User user, @RequestParam String username,
                               @RequestParam String password, @RequestParam Map<String, String> roles) {
-        user.setUsername(username);
-        user.setPassword(password);
-
-        user.getRoles().clear();
-        Set<String> rolesSet = Arrays.stream(Role.values()).map(Role::name).collect(Collectors.toSet());
-        for (String key : roles.keySet()) {
-            if (rolesSet.contains(key)) {
-                user.getRoles().add(Role.valueOf(key));
-            }
-        }
-
-        userRepo.save(user);
+        usrService.save(user, username, password, roles);
         return "redirect:/users";
     }
 }

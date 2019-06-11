@@ -2,6 +2,6 @@
 <#import "freemarkerTemplates/loginForm.ftl" as l>
 
 <@p.page "Registration">
-    <@l.login "/registration" "Register" "Fill up your credentials"/>
+    <@l.login "/registration" "Register" "Fill up your credentials" false/>
     <a href="/login">Already have an account</a>
 </@p.page>

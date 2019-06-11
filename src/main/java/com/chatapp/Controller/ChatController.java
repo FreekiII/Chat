@@ -27,7 +27,7 @@ public class ChatController {
 
     @PostMapping("/chat")
     public String sendMessage(@AuthenticationPrincipal User user,
-                              @RequestParam String userMsg, Model model) {
+                              @RequestParam String userMsg) {
         msgRepo.save(new Message(userMsg, user));
         return "redirect:/chat";
     }
