@@ -1,6 +1,7 @@
 package com.chatapp.Data;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "msg")
@@ -15,14 +16,24 @@ public class Message {
     @JoinColumn(name = "usr_id")
     private User author;
 
+    private LocalDateTime time_published;
+
     public Message() {
 
     }
 
     public Message(String text, User user) {
-
         this.text = text;
         this.author = user;
+        System.out.println(LocalDateTime.now());
+    }
+
+    public LocalDateTime getTimestamp() {
+        return time_published;
+    }
+
+    public void setTimestamp(LocalDateTime timestamp) {
+        this.time_published = timestamp;
     }
 
     public Long getId() {

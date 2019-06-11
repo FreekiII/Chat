@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.LocalDateTime;
+
 @Controller
 public class ChatController {
     @Autowired
@@ -19,6 +21,7 @@ public class ChatController {
     @GetMapping("/chat")
     public String getMainPage(Model model) {
         model.addAttribute("messages", msgRepo.findAll());
+        model.addAttribute("CRUTCH", LocalDateTime.now());
         return "chat";
     }
 

@@ -10,17 +10,19 @@
         <div class="form-group">
             <form method="post">
                 <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-                <input type="text" placeholder="Your message" name="userMsg" class="from-control my-1"/>
-                <button type="submit" class="btn btn-primary">Send</button>
+                <input type="text" placeholder="Your message" name="userMsg" class="form-control my-1"/>
+                <button type="submit" class="btn btn-primary mt-2">Send</button>
             </form>
         </div>
     </div>
+
+    <!-- MESSAGE LOG -->
     <h3>Message log</h3>
     <#list messages as msg>
         <div class="card my-3" style="width: 25rem;">
-            <div class="form-control form-control-lg">   ${msg.text}</div>
+            <div class="form-control form-control-lg">${msg.text}</div>
             <div class="card-footer text-muted">
-                ${msg.author.getUsername()}
+                ${msg.author.getUsername()} <#if msg.time_published??>${msg.time_published}<#else>${CRUTCH}</#if>
             </div>
         </div>
     <#else>
