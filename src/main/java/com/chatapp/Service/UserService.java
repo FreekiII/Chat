@@ -29,7 +29,7 @@ public class UserService implements UserDetailsService {
         return userRepo.findAll();
     }
 
-    public void save(User user, String username, String password, Map<String, String> roles) {
+    public void save(User user, String username, String password, Map<String, String> roles, boolean is_blocked) {
         if (!username.isEmpty()) {
             user.setUsername(username);
         }
@@ -50,10 +50,12 @@ public class UserService implements UserDetailsService {
             user.setActive(true);
         }
 
+        user.setBlocked(is_blocked);
+
         userRepo.save(user);
     }
 
-    public void update(User user, String username, String password) {
+    public void update(User user, String username, String password, boolean is_blocked) {
         if (!username.isEmpty()) {
             user.setUsername(username);
         }
@@ -65,6 +67,18 @@ public class UserService implements UserDetailsService {
         if (!user.isActive()) {
             user.setActive(true);
         }
+
+        user.setBlocked(is_blocked);
+
+        userRepo.save(user);
+    }
+
+    public void update(User user, boolean is_blocked) {
+        if (!user.isActive()) {
+            user.setActive(true);
+        }
+
+        user.setBlocked(is_blocked);
 
         userRepo.save(user);
     }

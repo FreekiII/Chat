@@ -3,7 +3,7 @@ package com.chatapp.Data;
 import org.springframework.security.core.GrantedAuthority;
 
 public enum Role implements GrantedAuthority {
-    USER, ADMIN;
+    USER, MODERATOR, ADMIN;
 
     @Override
     public String getAuthority() {

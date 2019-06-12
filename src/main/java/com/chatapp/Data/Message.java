@@ -25,7 +25,6 @@ public class Message {
     public Message(String text, User user) {
         this.text = text;
         this.author = user;
-        System.out.println(LocalDateTime.now());
     }
 
     public LocalDateTime getTimestamp() {

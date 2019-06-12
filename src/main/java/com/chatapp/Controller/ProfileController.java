@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.HashMap;
-
 @Controller
 public class ProfileController {
     @Autowired
@@ -28,7 +26,7 @@ public class ProfileController {
     public String changeProfile(@AuthenticationPrincipal User user,
                                 @RequestParam String username, @RequestParam String password) {
 
-        userService.update(user, username, password);
+        userService.update(user, username, password, false);
         return "redirect:/profile";
     }
 }

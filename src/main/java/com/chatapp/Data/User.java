@@ -17,6 +17,7 @@ public class User implements UserDetails {
     private String username;
     private String password;
     private boolean isActive;
+    private boolean isBlocked;
 
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "usr_role", joinColumns = @JoinColumn(name = "usr_id"))
@@ -99,5 +100,17 @@ public class User implements UserDetails {
 
     public boolean isAdmin() {
         return roles.contains(Role.ADMIN);
+    }
+
+    public boolean isModerator() {
+        return roles.contains(Role.MODERATOR);
+    }
+
+    public boolean isBlocked() {
+        return isBlocked;
+    }
+
+    public void setBlocked(boolean blocked) {
+        isBlocked = blocked;
     }
 }

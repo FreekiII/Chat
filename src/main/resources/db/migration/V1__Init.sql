@@ -12,10 +12,11 @@ create table msg
 
 create table usr
 (
-    id        int8         not null,
-    is_active boolean      not null,
-    password  varchar(255) not null,
-    username  varchar(255) not null,
+    id         int8         not null,
+    is_active  boolean      not null,
+    is_blocked boolean      not null,
+    password   varchar(255) not null,
+    username   varchar(255) not null,
     primary key (id)
 );
 
