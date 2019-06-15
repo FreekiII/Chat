@@ -4,6 +4,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Collection;
 import java.util.Set;
 
@@ -14,8 +16,14 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @NotNull
+    @Size(max = 15)
     private String username;
+
+    @NotNull
+    @Size(max = 30)
     private String password;
+
     private boolean isActive;
     private boolean isBlocked;
 
@@ -23,6 +31,9 @@ public class User implements UserDetails {
     @CollectionTable(name = "usr_role", joinColumns = @JoinColumn(name = "usr_id"))
     @Enumerated(EnumType.STRING)
     private Set<Role> roles;
+
+    @ManyToMany(mappedBy = "user_list", fetch = FetchType.LAZY)
+    private Set<Room> rooms;
 
     public User() {
 
@@ -112,5 +123,13 @@ public class User implements UserDetails {
 
     public void setBlocked(boolean blocked) {
         isBlocked = blocked;
+    }
+
+    public Set<Room> getRooms() {
+        return rooms;
+    }
+
+    public void setRooms(Set<Room> rooms) {
+        this.rooms = rooms;
     }
 }

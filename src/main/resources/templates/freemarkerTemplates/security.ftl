@@ -7,5 +7,6 @@
     isMod = user.isModerator()>
 <#else>
     <#assign name = "none"
-    isAdmin = false>
+    isAdmin = false
+    isMod = false>
 </#if>

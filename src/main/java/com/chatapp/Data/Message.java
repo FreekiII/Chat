@@ -1,6 +1,11 @@
 package com.chatapp.Data;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
 @Entity
@@ -10,11 +15,19 @@ public class Message {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @NotNull
+    @Size(max = 256)
     private String text;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "usr_id")
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
     private User author;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "room_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Room room;
 
     private LocalDateTime time_published;
 
@@ -22,17 +35,18 @@ public class Message {
 
     }
 
-    public Message(String text, User user) {
+    public Message(String text, User user, Room room) {
         this.text = text;
         this.author = user;
+        this.room = room;
     }
 
-    public LocalDateTime getTimestamp() {
+    public LocalDateTime getTime_published() {
         return time_published;
     }
 
-    public void setTimestamp(LocalDateTime timestamp) {
-        this.time_published = timestamp;
+    public void setTime_published(LocalDateTime time_published) {
+        this.time_published = time_published;
     }
 
     public Long getId() {
@@ -57,5 +71,13 @@ public class Message {
 
     public void setAuthor(User author) {
         this.author = author;
+    }
+
+    public Room getRoom() {
+        return room;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
     }
 }

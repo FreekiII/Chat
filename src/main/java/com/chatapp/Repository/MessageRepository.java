@@ -1,8 +1,11 @@
 package com.chatapp.Repository;
 
 import com.chatapp.Data.Message;
-import org.springframework.data.repository.CrudRepository;
+import com.chatapp.Data.Room;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface MessageRepository extends CrudRepository<Message, Long> {
+import java.util.List;
 
+public interface MessageRepository extends JpaRepository<Message, Long> {
+    List<Message> findByRoom(Room room);
 }

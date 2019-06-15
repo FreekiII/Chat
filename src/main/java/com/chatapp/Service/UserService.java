@@ -25,6 +25,10 @@ public class UserService implements UserDetailsService {
         return userRepo.findByUsername(username);
     }
 
+    public User findByUsername(String username) {
+        return userRepo.findByUsername(username);
+    }
+
     public List<User> findAll() {
         return userRepo.findAll();
     }
@@ -82,4 +86,6 @@ public class UserService implements UserDetailsService {
 
         userRepo.save(user);
     }
+
+
 }
