@@ -30,7 +30,7 @@
     <!-- Delete user -->
     <#if (user_now.id == room.owner.id || user_now.isAdmin()) && !room.isUserListEmpty()>
         <div class="col-4">
-            <a class="btn btn-primary my-4" data-toggle="collapse" href="#delete" role="button" aria-expanded="false"
+            <a class="btn btn-primary my-3" data-toggle="collapse" href="#delete" role="button" aria-expanded="false"
                aria-controls="delete">
                 Delete user
             </a>
